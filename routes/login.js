@@ -32,8 +32,12 @@ exports.get_callback = function(req, res) {
     var errorHandler = function(error) {
         if (error) {
             console.log("ERROR: " + JSON.stringify(error));
-            res.send("ERROR: " + error);
+            res.cookie("toast", "Login failed! Please try again.");
+            res.redirect("/");
         }
+    };
+    var errorHandlerDummy = function(error) {
+        // do nothing
     };
     var emailP = oauth2Client.getToken(req.query.code)
     .then(function(result) {
@@ -53,7 +57,7 @@ exports.get_callback = function(req, res) {
                 semester: semester
             }
         });
-    }).catch(errorHandler);
+    }).catch(errorHandlerDummy);
     Promise.all([emailP, taP])
     .then(function(results) {
         var email = results[0];
@@ -69,7 +73,7 @@ exports.get_callback = function(req, res) {
     }).then(function() {
         res.cookie("auth", key, {"maxAge": 30*24*60*60*1000});
         res.redirect("/");
-    }).catch(errorHandler);
+    }).catch(errorHandlerDummy);
 };
 
 exports.get_logout = function(req, res) {
