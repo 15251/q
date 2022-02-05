@@ -6,9 +6,9 @@
       <% if (session && (session.TA || session.owner)) { %>
       <li style="margin-left: 10px;"><form method="POST" action="/options">
       <% if (typeof frozen != 'undefined' && frozen) { %>
-      <button class="waves-effect btn blue lighten-5 black-text freeze-btn freeze-input" name="frozen" value="0">Unfreeze</button>
+      <button class="waves-effect btn blue lighten-5 black-text freeze-btn freeze-input" name="frozen" value="0">Open queue</button>
       <% } else if (typeof frozen != 'undefined') { %>
-      <button class="waves-effect btn blue lighten-5 black-text freeze-btn freeze-input" name="frozen" value="1">Freeze</button>
+      <button class="waves-effect btn blue lighten-5 black-text freeze-btn freeze-input" name="frozen" value="1">Close queue</button>
       <% } %>
       </form></li>
       <% } %>

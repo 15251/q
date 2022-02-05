@@ -157,9 +157,9 @@ function create_float_update_message(field_name, prev_value, value) {
 function post_prop_update(req, key, prev_value, value) {
     if (key == "frozen") {
         if (prev_value == '0' && value == '1') {
-            return Promise.resolve("Queue frozen");
+            return Promise.resolve("Queue closed");
         } else if (prev_value == "1" && value == "0") {
-            return Promise.resolve("Queue unfrozen");
+            return Promise.resolve("Queue opened");
         }
     } else if (key == "message") {
         if (prev_value === "" && value !== "") {
