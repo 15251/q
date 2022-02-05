@@ -33,10 +33,10 @@
       <li><form method="POST" action="/options">
       <% if (typeof frozen != 'undefined' && frozen) { %>
       <input type="hidden" name="frozen" class="freeze-input" value="0">
-      <a onclick="$(this).closest('form').submit();"><span class="freeze-btn">Unfreeze</span> Queue</a>
+      <a onclick="$(this).closest('form').submit();"><span class="freeze-btn">Open</span> Queue</a>
       <% } else if (typeof frozen != 'undefined') { %>
       <input type="hidden" name="frozen" class="freeze-input" value="1">
-      <a onclick="$(this).closest('form').submit();"><span class="freeze-btn">Freeze</span> Queue</a>
+      <a onclick="$(this).closest('form').submit();"><span class="freeze-btn">Close</span> Queue</a>
       <% } %>
       </form></li>
       <% } %>
