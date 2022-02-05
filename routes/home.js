@@ -119,6 +119,9 @@ function post_add(req, res) {
         // A valid user ID is between 3 and 8 alphanumeric characters, and
         // if the user is logged in (and isn't a TA), then it must match
         // the account they're logged in with.
+        if (!p.is_logged_in(req)) {
+            respond(req, res, "You must log in first!");
+        }
         if (!user_id || user_id.length < 3 || user_id.length > 8
                 || !RegExp("^[A-Za-z0-9]*$").test(user_id)
                 || (p.is_logged_in(req) && !p.is_ta(req) && req.session.user_id != user_id)) {

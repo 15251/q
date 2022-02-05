@@ -181,7 +181,7 @@ input {
     line-height: 24px;
 }
 
-#add_form, #frozen_message {
+#add_form, #frozen_message, #require_login_message {
     display: none;
 }
 

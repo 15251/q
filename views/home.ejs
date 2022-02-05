@@ -85,6 +85,9 @@
   <h6 id="frozen_message" class="center" style="font-size: 120%;">
     The queue is <strong>frozen</strong>. No new signups are allowed.
   </h6>
+  <h6 id="require_login_message" class="center" style="font-size: 120%;">
+    Please login first to add yourself to the queue.
+  </h6>
 </div>
 
 <div id="help_modal" class="modal">
@@ -211,13 +214,17 @@ $(document).ready(function() {
   <%_ } _%>
 <%_ }); _%>
 
-  <%_ if ((!sawSelf && !frozen) || (session && (session.TA || session.owner))) { _%>
+  <%_ if (session && session.authenticated && ((!sawSelf && !frozen) || session.TA || session.owner)) { _%>
     $("#add_form").show();
   <%_ } _%>
   <%_ if (frozen) { _%>
     $("#frozen_message").show();
     $("#cooldown_override_text").hide();
   <%_ } _%>
+  <%_ if (!frozen && (!session || !session.authenticated)) { _%>
+    $("#require_login_message").show();
+  <%_ } _%>
+
 
     positionOverlay();
     updateStatus();
