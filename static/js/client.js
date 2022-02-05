@@ -4,7 +4,7 @@ const cancelHtml = "<button class='entry-item cancel-button hide waves-effect wa
 const requestUpdateHtml = `<button class='entry-item fix-question-button hide waves-effect waves btn-flat grey lighten-2 grey-text text-darken-3' name='action' value='REQUEST-UPDATE'>${fixQuestionIconHtml}</button>`;
 const doneHtml = "<button class='entry-item done-button hide waves-effect waves-light btn blue' name='action' value='DONE'>Done</button>";
 const helpHtml = "<button class='entry-item help-button hide waves-effect waves-light btn blue' name='action' value='HELP'>Help</button>";
-const openUpdateQuestionModalHtml = "<button class='entry-item open-update-question-button hide waves-effect waves btn-flat grey lighten-2 grey-text text-darken-3'>Update Question</button>";
+const openUpdateQuestionModalHtml = "<button class='entry-item open-update-question-button hide waves-effect waves btn-flat grey lighten-2 grey-text text-darken-3'>Unfreeze</button>";
 
 const entryHtml = `
     <li class='collection-item'>
@@ -85,7 +85,7 @@ $(document).ready(function() {
             });
             $(this).addClass("fix-confirming red white-text")
                 .removeClass("grey lighten-2 grey-text text-darken-3")
-                .text("Ask to Fix");
+                .text("Freeze");
             event.preventDefault();
         }
     });
@@ -167,7 +167,7 @@ function buildTAEntry(entry) {
                 elt.find(".help-button")
                     .removeClass("waves-light btn blue")
                     .addClass("waves btn-flat grey lighten-3 grey-text text-darken-2");
-                elt.find(".helping-text").text("Student is updating question");
+                elt.find(".helping-text").text("Student is frozen");
             } else {
                 elt.find(".fix-question-button").removeClass("hide");
             }
@@ -190,7 +190,7 @@ function buildMyEntry(entry) {
     } else {
         if (entry.update_requested) {
             elt.find(".open-update-question-button").removeClass("hide");
-            elt.find(".helping-text").text("Please update your question");
+            elt.find(".helping-text").text("You have been frozen, please follow instructions to unfreeze.");
         }
         elt.find(".remove-button").removeClass("hide");
     }
@@ -344,13 +344,13 @@ socket.on("request-update", function(message) {
 
             if ($(item).hasClass("me")) {
                 $(item).find(".remove-button").removeClass("hide");
-                $(item).find(".helping-text").text("Please update your question");
+                $(item).find(".helping-text").text("You have been frozen, please follow instructions to unfreeze.");
                 $(item).find(".open-update-question-button").removeClass("hide");
 
                 try {
                     if (("Notification" in window) && (Notification.permission == "granted")) {
-                        var notification = new Notification("Update Question Request", {
-                            "body": "Please refine your question so we can help you more efficiently.",
+                        var notification = new Notification("You have been frozen!", {
+                            "body": "Please follow instructions to unfreeze.",
                             "requireInteraction": true
                         });
                     }
@@ -368,7 +368,7 @@ socket.on("request-update", function(message) {
                         .removeClass("waves-light btn blue")
                         .addClass("waves btn-flat grey lighten-3 grey-text text-darken-2");
                 }
-                $(item).find(".helping-text").text("Student is updating question");
+                $(item).find(".helping-text").text("Student is frozen");
             }
         }
     });

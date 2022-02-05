@@ -443,12 +443,11 @@ function post_update(req, res) {
             if (!entry.update_requested) {
                 throw new Error("Question has already been updated");
             }
-            if (entry.question == updated_question) {
-                throw new Error("Same question was entered again. Please update your question.");
-            }
+            //if (entry.question == updated_question) {
+            //    throw new Error("Same question was entered again. Please update your question.");
+            //}
             return entry.update({
-                update_requested: false,
-                question: updated_question
+                update_requested: false
             }, {transaction: t});
         })
     }).then(function(result) {
