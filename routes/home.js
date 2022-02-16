@@ -88,6 +88,7 @@ exports.get = function(req, res) {
                 topics: results.topics,
                 seq: realtime.seq,
                 guide_url: results.guide_url,
+                remote_students_url: config.remote_students_url,
                 frozen: results.frozen,
                 message: results.message,
                 waittimes: waittimes.get(),

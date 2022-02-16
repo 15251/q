@@ -27,6 +27,12 @@
   </form>
   <%_ } _%>
 
+  <%_ if (session && session.TA) { _%>
+    <h6 id="remote_approved_message" class="center" style="font-size: 120%;">
+      <a href="<%= remote_students_url %>" target="_blank" rel="noopener noreferrer">List of approved remote students</a>
+    </h6>
+  <%_ } _%>
+
   <div id="queue_container">
   <div id="status">
     <div class="inner">
