@@ -1,3 +1,20 @@
+# 15-251 OHQ (Forked from 15-122)
+
+For future TAs, here are the rough steps that I took to get the queue working. If you have any questions feel free to contact me at bw1@andrew.cmu.edu or bw1@alumni.cmu.edu (depending on whether I graduted or not).
+- Get a VPS (I used aws lightsail but other platforms work too)
+- Clone this repo instead of the original one (contains crucial bugfixes and feature modifications)
+- Set up MySQL server per the original instructions below (only worked for me with ubuntu 18, not 20)
+- Set up Google OAuth credentials (create project outside of andrew.cmu.edu organization and add OAuth credential inside the project)
+- Set up domain name (.tk TLD is free at freenom.com)
+- Configure OHQ config.json per the original instructions below
+
+In addition to get better OAuth results and less login failures I did:
+- Set up cloudflare free account and set the domain up with cloudflare
+- enable flexible https (modifies cloudflare config and OHQ config.json config)
+- Change OAuth credentials to accept only the https link and then publish the project to get better OAuth
+Not sure if this worked, but I indeed got less login failures.
+
+
 # 15-122 Office Hours Queue
 
 ## Gather Necessary Information
