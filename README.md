@@ -14,6 +14,7 @@ In addition to get better OAuth results and less login failures I did:
 - Change OAuth credentials to accept only the https link and then publish the project to get better OAuth
 Not sure if this worked, but I indeed got less login failures.
 
+`s22data.sql` contains all data from the s22 semester for archive and recovery if needed.
 
 # 15-122 Office Hours Queue
 
